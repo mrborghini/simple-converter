@@ -1,0 +1,56 @@
+[package]
+name = "simple-converter"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.85"
+description = "Convert any media file with ffmpeg through a simple UI"
+license = "MIT"
+repository = "https://github.com/mrborghini/simple-converter"
+publish = false
+
+[dependencies]
+iced = { version = "0.14", features = ["tokio", "image"] }
+rfd = "0.17"
+tokio = { version = "1", features = ["process", "fs", "io-util", "sync", "rt-multi-thread", "macros", "time"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+ureq = "3"
+sha2 = "0.11"
+zip = { version = "8", default-features = false, features = ["deflate"] }
+lzma-rs = "0.3"
+tar = "0.4"
+directories = "6"
+which = "8"
+opener = { version = "0.8", features = ["reveal"] }
+anyhow = "1"
+
+[target.'cfg(windows)'.build-dependencies]
+winresource = "0.1"
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+codegen-units = 1
+strip = true
+
+[package.metadata.winresource]
+ProductName = "Simple Converter"
+FileDescription = "Simple Converter"
+LegalCopyright = "MIT License"
+
+[package.metadata.deb]
+maintainer = "mrborghini"
+copyright = "2026, mrborghini"
+license-file = ["LICENSE", "0"]
+extended-description = """\
+A small desktop tool that converts video, audio and image files with ffmpeg. \
+ffmpeg is downloaded on first start if it is not already installed."""
+section = "video"
+priority = "optional"
+depends = "$auto, libxkbcommon0"
+recommends = "xdg-desktop-portal"
+assets = [
+  ["target/release/simple-converter", "usr/bin/", "755"],
+  ["assets/simple-converter.desktop", "usr/share/applications/", "644"],
+  ["assets/icon.png", "usr/share/icons/hicolor/256x256/apps/simple-converter.png", "644"],
+]

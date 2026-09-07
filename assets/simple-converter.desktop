@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Simple Converter
+Comment=Convert any media file with ffmpeg
+Exec=simple-converter
+Icon=simple-converter
+Terminal=false
+Categories=AudioVideo;Video;Audio;
