@@ -100,8 +100,8 @@ Every push to `main` runs the **Release** workflow:
 2. The version is written to `Cargo.toml` and `Cargo.lock`, committed as `chore(release): vX.Y.Z`,
    tagged and pushed.
 3. Windows and Linux builds run the tests, build the binaries and package them.
-4. A **draft** release with all four artifacts and a `SHA256SUMS.txt` is created. Review it on
-   GitHub and press *Publish* when you are happy.
+4. A GitHub release with all four artifacts, a `SHA256SUMS.txt` and auto-generated notes is
+   published.
 
 The workflow can also be started by hand from the Actions tab with an explicit bump. If `main`
 is protected against direct pushes, allow the GitHub Actions bot to push or supply a PAT.
